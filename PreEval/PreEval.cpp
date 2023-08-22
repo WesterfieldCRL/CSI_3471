@@ -9,8 +9,8 @@ int main(int argc, char* argv[])
 
     ifstream input;
     string data;
-    vector<int> dataVector;
-    int sum = 0;
+    vector<double> dataVector;
+    double sum = 0;
     char* fileFound;
 
     input.open(argv[1]);
@@ -30,13 +30,13 @@ int main(int argc, char* argv[])
             {
                 i++;
             }
-            else if (!isdigit(data[i]))
+            else if (!isdigit(data[i]) && data[i] != '.')
             {
                 fprintf(stderr, "Error: File contains non-numeric data\n");
                 return 1;
             }
         }
-        dataVector.insert(dataVector.end(), stoi(data));
+        dataVector.insert(dataVector.end(), stod(data));
     }
 
     for (int i = 0; i < dataVector.size(); i++)
