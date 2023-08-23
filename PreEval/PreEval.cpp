@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -44,7 +45,7 @@ int main(int argc, char* argv[])
         sum += dataVector[i];
     }
 
-    cout << "The sum of the numbers in the file is: " << sum << endl;
+    cout << "The sum of the numbers in the file is: " << fixed << setprecision(7) << sum << endl;
 
     return 0;
 }
