@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
             {
                 i++;
             }
-            else if (!isdigit(data[i]) && data[i] != '.')
+            else if ((!isdigit(data[i]) && data[i] != '.') || (i == 0 && data[i] == '.' && data.length() == 1))
             {
                 fprintf(stderr, "Error: File contains non-numeric data\n");
                 return 1;
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
         sum += dataVector[i];
     }
 
-    cout << "The sum of the numbers in the file is: " << fixed << setprecision(7) << sum << endl;
+    cout << "The sum of the numbers in the file is: " << sum << endl;
 
     return 0;
 }
