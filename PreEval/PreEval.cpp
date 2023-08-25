@@ -1,16 +1,29 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include <iomanip>
 
 using namespace std;
+
+void expandVector(double* &inputVector, int &capacity, int size)
+{
+    capacity *= 2;
+    double* tempVector = inputVector;
+    inputVector = new double[capacity];
+    for (int i = 0; i < size; i++)
+    {
+        inputVector[i] = tempVector[i];
+    }
+    delete [] tempVector;
+}
 
 int main(int argc, char* argv[])
 {
 
     ifstream input;
     string data;
-    vector<double> dataVector;
+    
+    int size = 0;
+    int capacity = 5;
+    double* dataVector = new double[capacity];
     double sum = 0;
     char* fileFound;
 
@@ -37,15 +50,22 @@ int main(int argc, char* argv[])
                 return 1;
             }
         }
-        dataVector.insert(dataVector.end(), stod(data));
+        dataVector[size] = stod(data);
+        size++;
+        if (size >= capacity)
+        {
+            expandVector(dataVector, capacity, size);
+        }
     }
 
-    for (int i = 0; i < dataVector.size(); i++)
+    for (int i = 0; i < size; i++)
     {
         sum += dataVector[i];
     }
 
     cout << "The sum of the numbers in the file is: " << sum << endl;
+
+    delete [] dataVector;
 
     return 0;
 }

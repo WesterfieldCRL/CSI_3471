@@ -14,7 +14,7 @@ int main()
 
     out.open("input.txt");
 
-    lines = 1000000;
+    lines = 100000000;
 
     for (int i = 0; i < lines; i++)
     {
