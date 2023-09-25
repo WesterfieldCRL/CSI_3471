@@ -1,9 +1,11 @@
 /*
- * Author: Your Name
+ * Author: Wesley Anastasi
  * Course: CSI 3471
  * Assignment: Lab 5
  * File: Tester.java
- * Description: Your brief description
+ * Description: This class is used to test the Make and MakeSettings classes.
+ * It reads in a CSV file and creates Make and MakeSettings objects from the data.
+ * It then performs the selected option.
  */
 
 package edu.baylor.cs.csi3471;
@@ -15,17 +17,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-class sortByName implements Comparator<Make>
-{
-	@Override
-	public int compare(Make a, Make b)
-	{
-		return a.getMakeName().compareToIgnoreCase(b.getMakeName());
-	}
-}
-
 public class Tester {
 
+	static class sortByName implements Comparator<Make>
+	{
+		@Override
+		public int compare(Make a, Make b)
+		{
+			return a.getMakeName().compareToIgnoreCase(b.getMakeName());
+		}
+	}
 	private static final int FILE_NAME = 1;
 	private static final int OPTION = 0;
 

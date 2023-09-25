@@ -1,9 +1,10 @@
 /*
- * Author: Your Name
+ * Author: Wesley Anastasi
  * Course: CSI 3471
  * Assignment: Lab 5
  * File: ModelSettings.java
- * Description: Your brief description
+ * Description: This class is used to store the settings of a model.
+ * It also contains the MPG class which is used to store the MPG of a model.
  */
 
 package edu.baylor.cs.csi3471;

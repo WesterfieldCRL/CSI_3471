@@ -1,9 +1,10 @@
 /*
- * Author: Your Name
+ * Author: Wesley Anastasi
  * Course: CSI 3471
  * Assignment: Lab 5
  * File: Make.java
- * Description: Your brief description
+ * Description: This class is used to store the settings of a make.
+ * It contains a list of ModelSettings objects.
  */
 
 package edu.baylor.cs.csi3471;
