@@ -1,0 +1,19 @@
+
+<ns2:bookstore xmlns:ns2="bookstore">
+    <bookList>
+        <book>
+            <author>Neil Kahn</author>
+            <title>The Tragedy</title>
+            <publishDate>2012-08-21T13:21:58.000Z</publishDate>
+            <isbn>978-0060554736</isbn>
+        </book>
+        <book>
+            <author>Charlotte Blum</author>
+            <title>Ghost</title>
+            <publishDate>2012-08-21T13:21:58.000Z</publishDate>
+            <isbn>978-3832180577</isbn>
+        </book>
+    </bookList>
+    <location>Waco</location>
+    <name>Baylor Bookstore</name>
+</ns2:bookstore>

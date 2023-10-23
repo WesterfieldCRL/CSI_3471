@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cd60938b-dddc-4b41-a3c4-7154330cf3fc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.classpath" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/bin/bookstores/Book.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/output-JAXB.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/sampleCSV.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/simple-output.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/bookstores/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/bookstores/Bookstore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/bookstores/BookstoreUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/bookstores/CSVBookstoreUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/bookstores/PromptXMLBookstoreUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/bookstores/XMLBookstoreUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/bookstores/test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/tester/Exx1StandardTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/tester/JUnit5TestSuiteExample1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/src/tester/bookstoreUtilsTester.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/target/classes/bookstores/Book.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/target/classes/bookstores/Bookstore.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/target/classes/bookstores/test.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/target/classes/tester/Exx1StandardTests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/target/classes/tester/JUnit5TestSuiteExample1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/test-etalon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Assignment8/test1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2X8Ezmnhn4TjQUF1s5C6MVgUloU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/wesley/Documents/CSI 3471/Programs/Lab9",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Lab9" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Lab9" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd60938b-dddc-4b41-a3c4-7154330cf3fc" name="Changes" comment="" />
+      <created>1698002571621</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698002571621</updated>
+      <workItem from="1698002575182" duration="652000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
