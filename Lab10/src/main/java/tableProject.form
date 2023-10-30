@@ -20,7 +20,7 @@
             <properties>
               <autoCreateRowSorter value="true"/>
               <cellSelectionEnabled value="false"/>
-              <enabled value="false"/>
+              <enabled value="true"/>
               <showHorizontalLines value="true"/>
             </properties>
             <clientProperties>
