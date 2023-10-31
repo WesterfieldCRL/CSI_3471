@@ -21,8 +21,10 @@ public class tableProject {
     private JComboBox comboBox1;
     private int columnIndex = 0;
 
+    private JFrame frame;
+
     public tableProject() {
-        JFrame frame = new JFrame("CSV Table Viewer");
+        frame = new JFrame("CSV Table Viewer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -123,23 +125,62 @@ public class tableProject {
         }
     }
 
-    class ButtonRenderer extends JButton implements TableCellRenderer {
+    class editDialog extends JDialog {
 
-        public ButtonRenderer() {
-            setOpaque(true);
+        public editDialog(JFrame parent, int selectedRow, int selectedColumn) {
+            super(parent, "Edit Dialog", true);
+
+            JPanel panel = new JPanel();
+
+            ArrayList<JTextField> inputFields = new ArrayList<>();
+            DefaultTableModel model = (DefaultTableModel) table1.getModel();
+            String[] inputData = new String[selectedColumn-1];
+
+            for (int i = 0; i < selectedColumn - 1; i++) {
+                inputData[i] = (String) model.getValueAt(selectedRow, i);
+            }
+
+            for (int i = 0; i < inputData.length; i++) {
+                JLabel label = new JLabel("Enter " + model.getColumnName(i) + ": ");
+                panel.add(label);
+
+                JTextField inputField = new JTextField(20);
+                inputField.setText(inputData[i]);
+                panel.add(inputField);
+
+                inputFields.add(inputField);
+            }
+
+            JPanel buttonPanel = getjPanel(selectedRow, inputFields);
+
+            add(panel);
+            add(buttonPanel, BorderLayout.SOUTH);
+
+            pack();
+            setLocationRelativeTo(parent);
+            setVisible(true);
         }
 
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                                                       boolean isSelected, boolean hasFocus, int row, int column) {
-            if (isSelected) {
-                setForeground(table.getSelectionForeground());
-                setBackground(table.getSelectionBackground());
-            } else {
-                setForeground(table.getForeground());
-                setBackground(UIManager.getColor("Button.background"));
-            }
-            setText((value == null) ? "" : value.toString());
-            return this;
+        private JPanel getjPanel(int selectedRow, ArrayList<JTextField> inputFields) {
+            JButton submitButton = new JButton("Submit");
+
+            submitButton.addActionListener(e -> {
+                ArrayList<String> inputValues = new ArrayList<>();
+                for (JTextField field : inputFields) {
+                    String inputValue = field.getText();
+                    inputValues.add(inputValue);
+                }
+
+                for (int i = 0; i < inputValues.size(); i++) {
+                    table1.setValueAt(inputValues.get(i), selectedRow, i);
+                }
+
+                dispose();
+            });
+
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.add(submitButton);
+            return buttonPanel;
         }
     }
 
@@ -163,127 +204,17 @@ public class tableProject {
                     }
                     fireEditingStopped();
                 });
-            }
-            else if (option == 2)
-            {
+            } else if (option == 2) {
                 button.addActionListener(e -> {
                     int selectedRow = table1.getSelectedRow();
                     int selectedColumn = table1.getSelectedColumn();
-                    DefaultTableModel model = (DefaultTableModel) table1.getModel();
 
-                    String[] currData = new String[selectedColumn];
-
-                    for (int i = 0; i < selectedColumn - 2; i++)
-                    {
-                        currData[i] = (String) model.getValueAt(selectedRow, i);
-                    }
-
-                    String[] data = getRowData(currData);
-
-                    for (String temp : data)
-                    {
-                        System.out.println(temp);
-                    }
-
-                    //model.setValueAt("yo mama", selectedRow, 0);
+                    editDialog t = new editDialog(frame, selectedRow, selectedColumn);
 
                     fireEditingStopped();
                 });
             }
         }
-
-        public String[] getRowData(String[] inputData)
-        {
-            ArrayList<JTextField> inputFields = new ArrayList<>();
-            JFrame newFrame = new JFrame();
-            newFrame.setTitle("Input Form");
-            newFrame.setSize(300, 200);
-            newFrame.setLayout(new GridLayout(0, 2));
-
-            for (String initialValue : inputData) {
-                JLabel label = new JLabel("Enter string:");
-                newFrame.add(label);
-
-                JTextField inputField = new JTextField(20);
-                inputField.setText(initialValue);
-                newFrame.add(inputField);
-
-                inputFields.add(inputField);
-            }
-
-            String[] outputData = new String[inputFields.size()];
-
-            JButton submitButton = new JButton("Submit");
-            newFrame.add(submitButton);
-
-            submitButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ArrayList<String> inputValues = new ArrayList<>();
-                    for (JTextField field : inputFields) {
-                        String inputValue = field.getText();
-                        inputValues.add(inputValue);
-                    }
-
-                    for (int i = 0; i < inputValues.size(); i++) {
-                        outputData[i] = inputValues.get(i);
-                    }
-
-                    newFrame.dispose();
-                }
-            });
-
-            newFrame.setVisible(true);
-
-            return outputData;
-        }
-
-        /*public class StringArrayInputForm extends JFrame {
-            private ArrayList<JTextField> inputFields;
-
-            public StringArrayInputForm(String[] initialValues) {
-                inputFields = new ArrayList<>();
-
-                setTitle("String Array Input Form");
-                setSize(300, 200);
-                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                setLocationRelativeTo(null);
-                setLayout(new GridLayout(0, 2));
-
-                for (String initialValue : initialValues) {
-                    JLabel label = new JLabel("Enter string:");
-                    add(label);
-
-                    JTextField inputField = new JTextField(20);
-                    inputField.setText(initialValue);
-                    add(inputField);
-
-                    inputFields.add(inputField);
-                }
-
-                JButton submitButton = new JButton("Submit");
-                add(submitButton);
-
-                submitButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        ArrayList<String> inputValues = new ArrayList<>();
-                        for (JTextField field : inputFields) {
-                            String inputValue = field.getText();
-                            inputValues.add(inputValue);
-                        }
-
-                        // You can process the inputValues list here
-                        for (String value : inputValues) {
-                            // Process each string value as needed
-                            System.out.println(value);
-                        }
-                    }
-                });
-
-                setVisible(true);
-            }
-        }*/
 
         public Component getTableCellEditorComponent(JTable table, Object value,
                                                      boolean isSelected, int row, int column) {
@@ -315,6 +246,26 @@ public class tableProject {
 
         protected void fireEditingStopped() {
             super.fireEditingStopped();
+        }
+    }
+
+    class ButtonRenderer extends JButton implements TableCellRenderer {
+
+        public ButtonRenderer() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus, int row, int column) {
+            if (isSelected) {
+                setForeground(table.getSelectionForeground());
+                setBackground(table.getSelectionBackground());
+            } else {
+                setForeground(table.getForeground());
+                setBackground(UIManager.getColor("Button.background"));
+            }
+            setText((value == null) ? "" : value.toString());
+            return this;
         }
     }
 
