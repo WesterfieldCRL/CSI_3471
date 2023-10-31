@@ -19,6 +19,7 @@ public class tableProject {
     private JLabel label1;
     private JTextField textField1;
     private JComboBox comboBox1;
+    private JButton newButton;
     private int columnIndex = 0;
 
     private JFrame frame;
@@ -104,7 +105,14 @@ public class tableProject {
                 tableModel.addRow(data);
             }
 
-
+            newButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int selectedRow = table1.getSelectedRow();
+                    int selectedColumn = table1.getSelectedColumn();
+                    TableDialog t = new TableDialog(frame, -1, -1);
+                }
+            });
 
             table1.setModel(tableModel);
             reader.close();
@@ -125,33 +133,46 @@ public class tableProject {
         }
     }
 
-    class editDialog extends JDialog {
+    class TableDialog extends JDialog {
 
-        public editDialog(JFrame parent, int selectedRow, int selectedColumn) {
-            super(parent, "Edit Dialog", true);
+        public TableDialog(JFrame parent, int selectedRow, int selectedColumn) {
+            super(parent, "Table Dialog", true);
 
             JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            int rowLength = table1.getColumnCount()-2;
 
             ArrayList<JTextField> inputFields = new ArrayList<>();
             DefaultTableModel model = (DefaultTableModel) table1.getModel();
-            String[] inputData = new String[selectedColumn-1];
+            String[] inputData;
 
-            for (int i = 0; i < selectedColumn - 1; i++) {
-                inputData[i] = (String) model.getValueAt(selectedRow, i);
+            if (selectedRow == -1 && selectedColumn == -1)
+            {
+                inputData = new String[0];
+            }
+            else {
+                inputData = new String[rowLength];
+                for (int i = 0; i < selectedColumn - 1; i++) {
+                    inputData[i] = (String) model.getValueAt(selectedRow, i);
+                }
             }
 
-            for (int i = 0; i < inputData.length; i++) {
+            for (int i = 0; i < rowLength; i++) {
                 JLabel label = new JLabel("Enter " + model.getColumnName(i) + ": ");
                 panel.add(label);
 
                 JTextField inputField = new JTextField(20);
-                inputField.setText(inputData[i]);
+                if (inputData.length != 0) {
+                    inputField.setText(inputData[i]);
+                }
                 panel.add(inputField);
 
                 inputFields.add(inputField);
             }
 
-            JPanel buttonPanel = getjPanel(selectedRow, inputFields);
+
+
+            JPanel buttonPanel = getjPanel(inputFields, selectedRow, selectedColumn);
 
             add(panel);
             add(buttonPanel, BorderLayout.SOUTH);
@@ -161,8 +182,9 @@ public class tableProject {
             setVisible(true);
         }
 
-        private JPanel getjPanel(int selectedRow, ArrayList<JTextField> inputFields) {
-            JButton submitButton = new JButton("Submit");
+        private JPanel getjPanel(ArrayList<JTextField> inputFields, int selectedRow, int selectedColumn) {
+            JButton submitButton = new JButton("Save");
+            JButton cancelButton = new JButton("Cancel");
 
             submitButton.addActionListener(e -> {
                 ArrayList<String> inputValues = new ArrayList<>();
@@ -171,15 +193,31 @@ public class tableProject {
                     inputValues.add(inputValue);
                 }
 
-                for (int i = 0; i < inputValues.size(); i++) {
-                    table1.setValueAt(inputValues.get(i), selectedRow, i);
+                if (selectedRow == -1 && selectedColumn == -1)
+                {
+                    DefaultTableModel model = (DefaultTableModel) table1.getModel();
+                    model.addRow(inputValues.toArray());
+                    table1.setModel(model);
+                }
+                else {
+                    for (int i = 0; i < inputValues.size(); i++) {
+                        table1.setValueAt(inputValues.get(i), selectedRow, i);
+                    }
                 }
 
                 dispose();
             });
 
+            cancelButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
+
             JPanel buttonPanel = new JPanel();
             buttonPanel.add(submitButton);
+            buttonPanel.add(cancelButton);
             return buttonPanel;
         }
     }
@@ -209,7 +247,7 @@ public class tableProject {
                     int selectedRow = table1.getSelectedRow();
                     int selectedColumn = table1.getSelectedColumn();
 
-                    editDialog t = new editDialog(frame, selectedRow, selectedColumn);
+                    TableDialog t = new TableDialog(frame, selectedRow, selectedColumn);
 
                     fireEditingStopped();
                 });
