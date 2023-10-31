@@ -94,7 +94,8 @@ public class tableProject {
             tableModel.addColumn("Weight");
             tableModel.addColumn("Breed");
             tableModel.addColumn("Color");
-            tableModel.addColumn("Button");
+            tableModel.addColumn("Delete");
+            tableModel.addColumn("Edit");
 
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -109,11 +110,13 @@ public class tableProject {
             //Prevent edits so they can be done via "special buttons!"
             table1.setDefaultEditor(Object.class, null);
 
-            table1.getColumn("Button").setCellRenderer(new ButtonRenderer());
-            table1.getColumn("Button").setCellEditor(
-                    new ButtonEditor(new JCheckBox()));
+            table1.getColumn("Delete").setCellRenderer(new ButtonRenderer());
+            table1.getColumn("Delete").setCellEditor(
+                    new ButtonEditorDelete(new JCheckBox()));
 
-            //createFilterTextFields(header);
+            table1.getColumn("Edit").setCellRenderer(new ButtonRenderer());
+            table1.getColumn("Edit").setCellEditor(
+                    new ButtonEditorEdit(new JCheckBox()));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -141,19 +144,24 @@ public class tableProject {
         }
     }
 
-    class ButtonEditor extends DefaultCellEditor {
+    class ButtonEditorDelete extends DefaultCellEditor {
         protected JButton button;
 
         private String label;
 
         private boolean isPushed;
 
-        public ButtonEditor(JCheckBox checkBox) {
+        public ButtonEditorDelete(JCheckBox checkBox) {
             super(checkBox);
             button = new JButton();
             button.setOpaque(true);
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    int selectedRow = table1.getSelectedRow();
+                    DefaultTableModel model = (DefaultTableModel) table1.getModel();
+                    if (selectedRow != -1) {
+                        model.removeRow(selectedRow);
+                    }
                     fireEditingStopped();
                 }
             });
@@ -176,13 +184,10 @@ public class tableProject {
 
         public Object getCellEditorValue() {
             if (isPushed) {
-                //
-                //
-                JOptionPane.showMessageDialog(button, label + ": Ouch!");
-                // System.out.println(label + ": Ouch!");
+                //thing
             }
             isPushed = false;
-            return new String(label);
+            return label;
         }
 
         public boolean stopCellEditing() {
@@ -194,6 +199,59 @@ public class tableProject {
             super.fireEditingStopped();
         }
     }
+
+    class ButtonEditorEdit extends DefaultCellEditor {
+        protected JButton button;
+
+        private String label;
+
+        private boolean isPushed;
+
+        public ButtonEditorEdit(JCheckBox checkBox) {
+            super(checkBox);
+            button = new JButton();
+            button.setOpaque(true);
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Deez Nuts");
+                    fireEditingStopped();
+                }
+            });
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                                                     boolean isSelected, int row, int column) {
+            if (isSelected) {
+                button.setForeground(table.getSelectionForeground());
+                button.setBackground(table.getSelectionBackground());
+            } else {
+                button.setForeground(table.getForeground());
+                button.setBackground(table.getBackground());
+            }
+            label = (value == null) ? "" : value.toString();
+            button.setText(label);
+            isPushed = true;
+            return button;
+        }
+
+        public Object getCellEditorValue() {
+            if (isPushed) {
+
+            }
+            isPushed = false;
+            return label;
+        }
+
+        public boolean stopCellEditing() {
+            isPushed = false;
+            return super.stopCellEditing();
+        }
+
+        protected void fireEditingStopped() {
+            super.fireEditingStopped();
+        }
+    }
+
     private void filterTable() {
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
